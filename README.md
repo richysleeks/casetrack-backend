@@ -1,7 +1,5 @@
 # README.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 # CaseTrack — Django Backend
 
 Django REST Framework API for task management. CaseTrack is a task management API built for the HMCTS Developer Challenge.
