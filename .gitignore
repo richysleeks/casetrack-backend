@@ -4,6 +4,3 @@ __pycache__/
 *.pyo
 # Virtual environment
 env/
-
-# Claude
-CLAUDE.md
