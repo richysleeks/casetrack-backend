@@ -123,6 +123,16 @@ List tasks ordered by `created_at` ascending. Supports optional status filter.
 | ------------ | ------------------------------------------------------ |
 | `?status=` | `todo` · `in_progress` · `done` · `overdue` |
 
+```
+
+GET http://127.0.0.1:8000/tasks/
+
+GET http://127.0.0.1:8000/tasks/?status=todo
+
+GET http://127.0.0.1:8000/tasks/?status=overdue
+
+```
+
 `overdue` filters: `due_date < now AND status != "done"` — handled server-side via `django.utils.timezone`.
 
 ---
@@ -137,23 +147,49 @@ List tasks ordered by `created_at` ascending. Supports optional status filter.
 
 ---
 
-### GET /tasks//
+## GET /tasks/\<id\>/
 
-Returns single task or **404**.
+Retrieve a single task. Replace `<id>` with the task's integer ID.
 
----
+```
 
-### PATCH /tasks//
+GET http://127.0.0.1:8000/tasks/1/
 
-Partial update — send only the fields to change. Returns **200 OK** or **400** on validation failure.
+```
 
----
-
-### DELETE /tasks//
-
-Returns **204 No Content** or **404**.
+Returns **200 OK** with the task, or **404** if the ID does not exist.
 
 ---
+
+### PATCH /tasks/\<id\>/
+
+Partially update a task. Replace `<id>` with the task's integer ID. Only include the fields you want to change.
+
+```
+
+PATCH http://127.0.0.1:8000/tasks/1/
+
+```
+
+```json
+
+{ "status": "done" }
+
+```
+
+Returns **200 OK** with the updated task, or **400** on validation failure.
+
+### DELETE /tasks/\<id\>/
+
+Delete a task permanently. Replace `<id>` with the task's integer ID.
+
+```
+
+DELETE http://127.0.0.1:8000/tasks/1/
+
+```
+
+Returns **204 No Content** on success, or **404** if the ID does not exist.
 
 ## Architecture
 
